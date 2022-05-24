@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome-free-5.13.0-web/css/all.min.css">
+</head>
+<body>
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-light" id="Nav">
+        <a class="navbar-brand" href="#">
+        <img src="images/PluraCode Logo 4.png" alt="logo">
+        </a>
+    </nav>
+
+    <section class="section1">
+        <h5 class="Pluralcode">Pluralcode Academy</h5>
+        <h3 class="Enrollment">Interest Form</h3>
+        <p class="para1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam</p>
+    </section>
+
+        <form>
+            <div class="form-row mt-4">
+              <div class="form-group col-md-3 offset-3">
+                <label class="label">First Name</label>
+                <input type="text" class="form-control Fname" id="input">
+              </div>
+              <div class="form-group col-md-3 ">
+                <label class="label">Last Name</label>
+                <input type="text" class="form-control Lname" id="input">
+              </div>
+            </div>
+            <div class="form-row mt-4">
+                <div class="form-group col-md-3 offset-3">
+                  <label class="label">Email Address</label>
+                  <input type="text" class="form-control email" placeholder="abc@abc.com" id="input">
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="label">Phone Number</label>
+                    <input type="tel" class="form-control phone"  id="input">
+                  </div>
+              </div>
+              <div class="form-row mt-4">
+                <div class="form-group col-md-3 offset-3">
+                    <label class="label">Course Of Interest</label>
+                    <select class="form-control form-control-md course" id="input">
+
+                    </select>
+                  </div>
+                <div class="form-group col-md-3">
+                  <label class="label">Mode Of Learning</label>
+                  <select class="form-control form-control-md mode" id="input">
+                    <option>Virtual</option>
+                    <option>Physical</option>
+                    <option>Exclusive</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row mt-4">
+                <div class="col-md-3 col-sm-12 col-lg-3 offset-3">
+                  <label class="label">Address</label>
+                  <input type="text" class="form-control address" id="input">
+                </div>
+                <div class="col-md-3 col-sm-12 col-lg-3">
+                  <label class="label">State Of Residence</label>
+                  <select class="form-control state" id="input">
+                    <option>ABUJA FCT</option>
+                    <option>ABIA</option>
+                    <option>ADAMAWA</option>
+                    <option>AKWA IBOM</option>
+                    <option>ANAMBRA</option>
+                    <option>BAUCHI</option>
+                    <option>BAYELSA</option>
+                    <option>BENUE</option>
+                    <option>BORNO</option>
+                    <option>CROSS RIVER</option>
+                    <option>DELTA</option>
+                    <option>EBONYI</option>
+                    <option>EDO</option>
+                    <option>EKITI</option>
+                    <option>ENUGU</option>
+                    <option>GOMBE</option>
+                    <option>IMO</option>
+                    <option>JIGAWA</option>
+                    <option>KADUNA</option>
+                    <option>KANO</option>
+                    <option>KATSINA</option>
+                    <option>KEBBI</option>
+                    <option>KOGI</option>
+                    <option>KWARA</option>
+                    <option>LAGOS</option>
+                    <option>NASSARAWA</option>
+                    <option>NIGER</option>
+                    <option>OGUN</option>
+                    <option>ONDO</option>
+                    <option>OSUN</option>
+                    <option>OYO</option>
+                    <option>PLATEAU</option>
+                    <option>RIVERS</option>
+                    <option>SOKOTO</option>
+                    <option>TARABA</option>
+                    <option>YOBE</option>
+                    <option>ZAMFARA</option>
+                    </select>
+                    
+                </div>
+              </div>
+              <div class="form-row mt-4">
+                <div class="col-md-3 col-sm-12 col-lg-3 mt-2 offset-3">
+                  <label class="label">Highest Academic Level</label>
+                  <select class="form-control Academic"onchange="showOtherForm(event)" id="input">
+                    <option value="BSC">BSC</option>
+                    <option value="Masters">Masters</option>
+                    <option value="PHD">PHD</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="col-md-3 col-sm-12 col-lg-3 mt-2 Hide" id="otherForm">
+                  <label class="label">Other</label>
+                  <input type="text" class="form-control" id="input">
+                </div>
+              </div>
+              <div class="box-content mt-5">
+                <div class="agree text-center">
+                  <input class="form-check-input check" id="checkBox" onclick="Display()" type="checkbox">
+                  <label class="form-check-label ml-3" id="checkLabel">
+                       I have read,understood and I agree with 
+                       <a class="link" onclick="myModal()">PluraCode's Student Policy</a>
+                  </label>
+                </div>
+                <div class="form-row mt-4">
+                  <div class="col-md-3 col-sm-12 col-lg-3 offset-3 mt-2 hide">
+                    <label class="label">Payment Method</label>
+                    <select class="form-control form-control-md payMethod" id="input">
+                      <option value="Card">Card</option>
+                      <option value="Bank Transfer">Bank Transfer</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="myButton text-center mt-5 mb-5">
+                <button class="buttonLast" onclick="interestForm(event)">Continue</button>
+              </div>
+          </form>
+
+
+          <div class="mymodal" id="my-modal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+              </div>
+              <div class="modal-body">
+                <div class="row justify-content-center">
+                  <div class="col-sm-8">
+                    <div>
+                      <h3>Payment Policy</h3>
+                      <p>
+                        Unless otherwise agreed, every student pays an upfront tuition fee, which is determined by the management of PluralCode LTD in order to secure their admission into PluralCode Academy. This applies to all academic programs.<br><br>
+                        Students shall either opt into the Full Payment Plan or Part-Payment Plan (if it is available) in order to secure their admission into the Academy.<br><br>
+                        Unless otherwise agreed, students under the Part-Payment Plan must pay an upfront deposit of at least 50% of agreed tuition, with a final 50% installation due and payable not later than four (4) weeks from the commencement of their academic program.
+                      </p>
+                      <hr>
+                      <h3>Defaults</h3>
+                      <p>Students who fail to comply with the payment structure and timeline above may be suspended from accessing PluralCode’s classroom and learning resources pending their complete compliance. This policy however, will take effect if after two (2) consecutive payment reminders from the management, the student fails, refuses and, or neglects to comply.
+                      </p>
+                      <hr>
+                      <h3>Rollovers</h3>
+                      <p>Students are allowed to rollover their admission to the next cohort provided that the following conditions are met:<br><br>
+                      - The student can no longer meet up with the schedule and obligations of the academic program due to personal or professional commitments that precludes him/her  from meeting up with the requirements of their program.<br><br>
+                      - The student has more than  seven (7) classes left on the current program.<br><br>
+                      Any student who wishes to rollover his/her admission must undergo the following process:<br><br>
+                      - Inform the management of their intention by sending an email to <a href="mailto:support@pluralcode.academy">support@pluralcode.academy</a> detailing their reason, and proposed cohort to resume their studies.<br><br>
+                      - Complete his/her tuition for the current registered cohort.<br><br>
+                      - If the student has completed more than seven (7) classes during the program, the student must then pay a rollover fee of additional 15% of original tuition.<br><br>
+                      The rollover fee is not applicable for students who have not attended more than seven (7) classes during their program, in which case the student need only pay a complete tuition in order to be rolled over to a new cohort.
+                      
+            
+                      </p>
+                      
+                      <hr>
+                      <h3>Attendance</h3>
+                      <p>
+                      Every student is required to attend and complete classes that are held during their program. PluralCode will bear no liability for  lack of comprehension, poor performance or inability to complete the student’s academic program which may be as a result of incomplete attendance record.<br><br>
+                      In the event a student is unable to meet up with classes for a day, they must send a notice to the mentor in charge of his or her class, or email Pluralcode’s management via <a href="mailto:support@pluralcode.academy">support@pluralcode.academy</a> to make known his / her situation and request for exemption.
+                      </p>
+                      <hr>
+                      <h3>Make-Up Class </h3>
+                      <p>
+                        Students are eligible to request a makeup class if they fall under the following categories:<br><br>
+                        - The student was unable to meet up with the class due to personal or professional commitments.<br><br>
+                        - The student made adequate effort to notify the mentor or Pluralcode’s Management about their absence.<br><br>
+                        - The student is unable to  keep pace with the class(es) and would like to request a remedial session to keep pace with the program.<br><br>
+                        Students who are eligible for a make-up class will be contacted and with a proposed date and time for this class.<br><br>
+                        
+                      The student may be required to pay a token fee of #5,000 for each make-up class depending on the circumstance. Waiving this fee is entirely at the discretion of PluralCode’s management
+                      </p>
+                      <hr>
+                      <h3>Capstone Projects</h3>
+                      <p>
+                        Every student is required to complete a minimum of 2 capstone projects during their program. Unless otherwise stated, this is a prerequisite for graduation and certification at the end of the program. PluralCode may withhold your certificate pending the completion and approval of all your capstone projects.
+                      </p>
+                      <hr>
+                      <h3>Certifications</h3>
+                      <p>Upon completion of the program and upon fulfilling all academic requirements, students shall be issued a verifiable Certificate of Achievement which may come in physical or digital format.</p>
+                      
+                      
+              
+                    </div>   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script>
+      const check = document.getElementById("checkBox");
+      const hide = document.querySelector(".hide");
+
+      function Display() {
+        hide.style.display = "block";
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="fontawesome-free-5.13.0-web/js/all.min.js"></script>
+</body>
+</html>

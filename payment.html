@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome-free-5.13.0-web/css/all.min.css">
+</head>
+<body>
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-light" id="Nav">
+        <a class="navbar-brand" href="#">
+        <img src="images/PluraCode Logo 4.png" alt="logo">
+        </a>
+    </nav>
+
+    <section class="section1">
+        <h5 class="Pluralcode">Pluralcode Academy</h5>
+        <h3 class="Enrollment">Payment Page</h3>
+        <p class="para1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam</p>
+    </section>
+
+    <div class="section2">
+        <form>
+                <div class="form-group col-md-6 offset-3">
+                  <label class="label">Email Address</label>
+                  <input type="email" class="form-control email" placeholder="abc@abc.com" id="input">
+                </div>
+                <div class="form-group col-md-6 offset-3">
+                  <label class="label">Amount (in Naira)</label>
+                  <input type="number" class="form-control amount" id="input">
+                </div>
+                <div class="col-md-6 offset-3">
+                  <label class="label">Course Of Interest</label>
+                  <select class="form-control course" id="input">
+                    
+                  </select>
+                </div>
+                <div class="col-md-6 offset-3">
+                  <label class="label">Payment Method</label>
+                    <select class="form-control form-control-md payMethod" id="input">
+                      <option value="Card">Card</option>
+                      <option value="Bank Transfer">Bank Transfer</option>
+                    </select>
+                </div>
+                <div class="myButton text-center mt-5 mb-5">
+                  <button class="buttonLast" onclick="balancePay(event)">Continue</button>
+                </div>
+        </form>
+    </div>
+
+  
+
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="fontawesome-free-5.13.0-web/js/all.min.js"></script>
+</body>
+</html>

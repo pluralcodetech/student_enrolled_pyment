@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome-free-5.13.0-web/css/all.min.css">
+</head>
+<body>
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-light" id="Nav">
+        <a class="navbar-brand" href="#">
+        <img src="images/PluraCode Logo 4.png" alt="logo">
+        </a>
+    </nav>
+
+    <section class="section1">
+        <h5 class="Pluralcode">Pluralcode Academy</h5>
+        <h3 class="Enrollment">Payment Page</h3>
+        <h3 class="pay_k"></h3>
+    </section>
+
+    <div class="card mb-5 offset-4" id="card">
+        <div class="card-body">
+            <h5 class="card-title" id="card_title">Pay via Bank Deposit</h5>
+            <p class="card-text" id="card-text2" style="border-bottom: 1px solid #000">
+                Kindly make a bank transfer to the details below. Once done, 
+                kindly click the button below to forward your payment proof to
+                our accounts team for confirmation. 
+            </p>
+
+            <center class="mb-5">
+                <img style="width: 90px; border-radius: 20px;" src="images/kuda.png" alt="kuda">
+            </center>
+
+                <div class="Bank">
+                    <h6>Bank Acct Name:</h6>
+                    <div class="bankBox">
+                        <center>
+                        <h4 class="bankAcctName mt-2"></h4>
+                        </center>
+                    </div>
+                </div>
+                <div class="Bank mt-5">
+                    <h6>Bank Acct Num:</h6>
+                    <div class="bankBox">
+                        <center>
+                        <h4 class="bankAcctNum mt-2"></h4>
+                        </center>
+                    </div>
+                </div>
+                <div class="Bank mt-5">
+                    <h6>Bank Name:</h6>
+                    <div class="bankBox">
+                        <center>
+                        <h4 class="bankName mt-2"></h4>
+                        </center>
+                    </div>
+                </div>
+
+                <p class="mt-3" style="text-align: center;">
+                    Once confirmed, you would receive a payment confirmation mail.
+                </p>
+        </div>
+
+        <div class="myButton text-center mt-2 mb-5">
+          <button class="buttonLast2" onclick="payBank()">I Have Paid</button>
+        </div>
+    
+    </div> 
+
+    <script type="text/javascript" src="js/main.js"></script>
+    <script>
+     function BankAcctName() {
+    const bankAccountName = document.querySelector(".bankAcctName");
+    const bankAccountNameVar = localStorage.getItem("dataItems");
+    const bankAccountNameSecVar = JSON.parse(bankAccountNameVar);
+    const myBankAccountName = bankAccountNameSecVar.bank_account_name;
+    bankAccountName.innerHTML = myBankAccountName;
+}
+
+BankAcctName();
+
+function BankAcctNumber() {
+    const bankAccountNum = document.querySelector(".bankAcctNum");
+    const bankAccountNumVar = localStorage.getItem("dataItems");
+    const bankAccountNumSecVar = JSON.parse(bankAccountNumVar);
+    const myBankAccountNum = bankAccountNumSecVar.bank_account_number;
+    bankAccountNum.innerHTML = myBankAccountNum;
+}
+
+BankAcctNumber();
+
+function BankName() {
+    const bankName = document.querySelector(".bankName");
+    const bankNameVar = localStorage.getItem("dataItems");
+    const bankNameSecVar = JSON.parse(bankNameVar);
+    const myBankName = bankNameSecVar.bank_name;
+    bankName.innerHTML = myBankName;
+}
+
+BankName();
+    </script>
+    <script type="text/javascript" src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="fontawesome-free-5.13.0-web/js/all.min.js"></script>
+</body>
+</html>

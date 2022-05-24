@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome-free-5.13.0-web/css/all.min.css">
+</head>
+<body class="dashbody" onload="getEnrolled()">
+    <nav class="navbar navbar-light">
+        <a class="navbar-brand" href="#">
+        <img src="images/PluraCode Logo 4.png" alt="logo">
+        </a>
+        <button class="log-btn" onclick="logAdminOut(event)">logout</button>
+    </nav>
+
+    <div></div>
+
+    <div class="container t1">
+        <div class="flex-right">
+            <form>
+                <label class="label">Course</label>
+                <select class="form-control letcourse" id="input" onchange="getTypeCourse(event)">
+                    
+                </select>
+            </form>
+            
+    
+            <form>
+                <input type="search" placeholder="Search student" class="nsearch">
+                <!-- <i class="fas fa-search" id="searchIcon"></i> -->
+
+                <button class="dashBtn" onclick="searchName(event)">Search</button>
+            </form>
+        </div>
+    </div>
+    <div class="container t2">
+        <div class="flex-right">
+            <form>
+                <label class="label">Course</label>
+                <select class="form-control letcourse2" id="input" onchange="getTypeCourse2(event)">
+                    
+                </select>
+            </form>
+            
+    
+            <form>
+                <input type="search" placeholder="Search student" class="nsearch2">
+                <!-- <i class="fas fa-search" id="searchIcon"></i> -->
+
+                <button class="dashBtn" onclick="searchName2(event)">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="dashFluid">
+        <div class="dashBox mt-5">  
+            <div class="flex-right2">
+                <button class="pay-btn" onclick="getEnrolled()">Enrolled</button>
+                <button class="pay-btn" onclick="getInterest()">Interested</button>
+                <button class="pay-btn" onclick="showAdvisory()">Advisory</button>
+
+                <button class="dashBtn2" onclick="upDateDash()">Update Details <i class="fas fa-long-arrow-alt-right"></i></button> 
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+      <h4 class="dashHead dash">Enrolled Students</h4>
+    </div>
+
+    <div class="container-fluid firstTable" id="dashFluid">
+        <div class="dashBox mt-5 mb-5 pl-3">
+            <div class="flex-right2">
+                <div class="dashSelectBox">
+                    Sort by Date
+                    <input type="date" name="myDate" onchange="searchDate(event)">
+                </div>
+            </div>
+            
+            <div class="outer-wrapper">
+              <div class="table-wrapper">
+                <table class="table mt-5">
+                  <thead class="thead">
+                    <tr>
+                      <th class="thText">Student Name</th>
+                      <th class="thText">Email Address</th>
+                      <th class="thText">Phone</th>
+                      <th class="thText">Mode Of Learning</th>
+                      <th class="thText">Course Of Interest</th>
+                      <th class="thText">Mode Of Payment</th>
+                      <th class="thText">Date</th>
+                      <th class="thText">Time</th>
+                      <th class="thText">Address</th>
+                      <th class="thText">State Of Residence</th>
+                      <th class="thText">Level Of Education</th>
+                      <th class="thText">View Details</th>
+                    </tr>
+                  </thead>
+                  <tbody class="tableData">
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+        <div id="my-modal2" class="mymodal">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2>Students Details</h2>
+                <span class="close" onclick="closeModal4()">&times;</span>
+              </div>
+              <div class="modal-body2 p-5">
+                
+              </div>
+            </div>
+         </div>
+    </div>
+
+    <div class="container-fluid tableThird" id="dashFluid">
+        <div class="dashBox mt-5 mb-5 pl-3">
+            <div class="flex-right2">
+                <div class="dashSelectBox">
+                    Sort by Date
+                    <input type="date" name="myDate" onchange="searchDate2(event)">
+                </div>
+            </div>
+            
+            <div class="outer-wrapper">
+              <div class="table-wrapper">
+                <table class="table mt-5">
+                  <thead class="thead">
+                    <tr>
+                      <th class="thText">Student Name</th>
+                      <th class="thText">Email Address</th>
+                      <th class="thText">Phone</th>
+                      <th class="thText">Amount</th>
+                      <th class="thText">Mode Of Learning</th>
+                      <th class="thText">Course Of Interest</th>
+                      <th class="thText">Mode Of Payment</th>
+                      <th class="thText">Date</th>
+                      <th class="thText">Time</th>
+                      <th class="thText">Address</th>
+                      <th class="thText">State Of Residence</th>
+                      <th class="thText">Level Of Education</th>
+                    </tr>
+                  </thead>
+                  <tbody class="tableInterest">
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid secondTable" id="dashFluid">
+        <div class="dashBox mt-5 mb-5 pl-3">
+          <!-- <h4 class="dashHead text-center">Students</h4> -->
+          <center>
+            <div class="outer-wrapper mt-5">
+              <div class="table-wrapper">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Phone Number</th>
+                      <th>Course interested</th>
+                      <th>View Details</th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-id">
+    
+                  </tbody>
+                </table>
+              </div>
+          </div>
+          </center>
+        </div>
+        <div id="my-modal" class="mymodal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>Students Details</h2>
+              <span class="close" onclick="closeModal3()">&times;</span>
+            </div>
+            <div class="modal-body">
+              
+            </div>
+          </div>
+       </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript" src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="fontawesome-free-5.13.0-web/js/all.min.js"></script>
+</body>
+</html>

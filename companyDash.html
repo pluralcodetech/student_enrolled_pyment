@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap-4.6.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome-free-5.13.0-web/css/all.min.css">
+</head>
+<body class="dashbody">
+    <nav class="navbar navbar-light" >
+        <a class="navbar-brand" href="dashboard.html">
+        <img src="images/PluraCode Logo 4.png" alt="logo">
+        </a>
+    </nav>
+
+    <div class="row">
+      <div class="offset-8 col-lg-4">
+        <button class="upd-btn" onclick="openCreate()">create course</button>
+      </div>
+    </div>
+
+    <!-- <div class="container">
+        <div class="flex-right">
+            <div class="dropdown mt-5">
+                <button class="btn dropdown-toggle" type="button" id="theDrop" data-toggle="dropdown" aria-expanded="false">
+                  Course
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+    
+            <form>
+                <input type="search" placeholder="Search student" id="search">
+                <i class="fas fa-search" id="searchIcon"></i>
+
+                <button class="dashBtn">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="dashFluid">
+        <div class="dashBox mt-5">
+            <div class="flex-right2">
+                <p class="dashLink">All</p>
+                <p class="dashLink2">Enrolled</p>
+                <p class="dashLink2">Interested</p>
+
+                <button class="dashBtn2">Update Details <i class="fas fa-long-arrow-alt-right"></i></button> 
+            </div>
+        </div>
+    </div> -->
+
+    <div class="container-fluid" id="dashFluid">
+      <div class="dashBox mt-5 mb-5 pl-3">
+        <h4 class="dashHead">Company Details</h4>
+        
+        <form>
+          <div class="form-row" >
+            <div class="col-md-6 col-lg-6 col-sm-12">
+              <label class="label" id="cDashLabel">Email</label>
+              <input type="email" placeholder="Email" class="form-control aemail" id="cDashInput">
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12">
+              <label class="label" id="cDashLabel">Password</label>
+              <input type="password" class="form-control apass" placeholder="***********" id="cDashInput">
+            </div>
+          </div>
+          <div class="form-row mt-5" >
+            <div class="col-md-6 col-lg-4 col-sm-12">
+              <label class="label" id="cDashLabel">Bank Name</label>
+              <input type="text" placeholder="Enter Bank Name" class="form-control abank" id="cDashInput">
+            </div>
+            <div class="col-md-6 col-lg-4 col-sm-12">
+              <label class="label" id="cDashLabel">Bank Account Name</label>
+              <input type="text" class="form-control abankNa" id="cDashInput">
+            </div>
+            <div class="col-md-6 col-lg-4 col-sm-12">
+              <label class="label" id="cDashLabel">Account Number</label>
+              <input type="number" class="form-control adbankN" placeholder="0000000000" id="cDashInput">
+          </div>
+          </div>
+          <center>
+            <button class="up-btn" onclick="upDateRecord(event)">update</button>
+          </center>
+        </form>
+
+        <!-- <h4 class="dashHead mt-5">Bank Details</h4>
+
+              <form>
+                  <div class="form-row">
+                      <div class="col-md-6 col-lg-6 col-sm-12">
+                        <label class="label" id="cDashLabel">Bank Name</label>
+                        <input type="text" placeholder="First Bank Of Nigeria" class="form-control" id="cDashInput">
+                      </div>
+                      <div class="col-md-6 col-lg-6 col-sm-12">
+                        <label class="label" id="cDashLabel">Account Name</label>
+                        <input type="text" class="form-control" placeholder="PluraCode Enterprise" id="cDashInput">
+                      </div>
+                  </div>
+                  <div class="mt-5" id="cDashAcctNum">
+                      <label class="label" id="cDashLabel">Account Number</label>
+                      <input type="number" class="form-control" placeholder="0000000000" id="cDashInput">
+                  </div>
+              </form> -->
+      </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript" src="bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="fontawesome-free-5.13.0-web/js/all.min.js"></script>
+</body>
+</html>
