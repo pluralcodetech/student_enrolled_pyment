@@ -763,7 +763,8 @@ function getEnrolled() {
     .then(result => {
         console.log(result)
         result.map((item) => {
-            dataItem += `
+            if (item.payment_status === "complete") {
+                dataItem += `
                 <tr>
                     <td>${item.name}</td>
                     <td>${item.email}</td>
@@ -777,8 +778,29 @@ function getEnrolled() {
                     <td>${item.state_of_residence}</td>
                     <td>${item.level_of_education}</td>
                     <td><button class="upd-btn" onclick="viewEnrolled(${item.id})">View me</button></td>
+                    <td><button disabled class=${item.payment_status}>${item.payment_status}</button></td>
                 </tr>
-            `
+               `
+            }
+            else {
+                dataItem += `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.email}</td>
+                    <td>${item.phone_number}</td>
+                    <td>${item.mode_of_learning}</td>
+                    <td>${item.course_of_interest}</td>
+                    <td>${item.mode_of_payment}</td>
+                    <td>${item.date}</td>
+                    <td>${item.time}</td>
+                    <td>${item.address}</td>
+                    <td>${item.state_of_residence}</td>
+                    <td>${item.level_of_education}</td>
+                    <td><button class="upd-btn" onclick="viewEnrolled(${item.id})">View me</button></td>
+                    <td><button class=${item.payment_status} onclick="changeStatus(${item.id})">${item.payment_status}</button></td>
+                </tr>
+               `
+            }
             const tableInfo = document.querySelector(".tableData");
             tableInfo.innerHTML = dataItem;
         })

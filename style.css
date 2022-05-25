@@ -27,41 +27,6 @@ body {
 
 
 
-
-
-
-/*secton3*/
-/* .section3 {
-    position: absolute;
-    width: 100%;
-    height: 405px;
-    top: 838px;
-
-    background: #FFF7EB;
-    border: 1px solid #EBEBEB;
-    box-sizing: border-box;
-}
-
-@media screen and (max-width: 480px) {
-    /*secton3 480px
-.section3 {
-    position: absolute;
-    width: 100%;
-    height: 575px;
-    top: 1038px;
-    left: 0;
-    padding: 50px;
-    margin-top: 120px;
-
-    background: #FFF7EB;
-    border: 1px solid #EBEBEB;
-    box-sizing: border-box;
-}
-} */
-
-
-/* lastInputSec */
-
 .lastInputSec {
     margin-left: 40%;
     margin-top: 50px;
@@ -1314,4 +1279,23 @@ table td {
 
 .secondTable, .tableThird, .t2 {
     display: none;
+}
+
+
+.complete, .pending {
+    color: #fff;
+    width: 100%;
+    outline: none;
+    box-shadow: none;
+    padding: 8px 8px;
+    border: 0;
+    border-radius: 5px;
+}
+
+.complete {
+    background-color: #4ee053;
+}
+
+.pending {
+    background-color: #d60026;
 }
