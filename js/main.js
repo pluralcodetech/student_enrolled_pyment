@@ -151,15 +151,30 @@ function getAdvisory() {
     .then(result => {
         console.log(result)
         result.map((item) => {
-            adData += `
-             <tr>
-               <td>${item.name}</td>
-               <td>${item.email}</td>
-               <td>${item.phone_number}</td>
-               <td>${item.course_interested_in}</td>
-               <td><button class="upd-btn" onclick="openAdModal(${item.id})">View me</button></td>
-             </tr>
-            `
+            if (item.status === "complete") {
+                adData += `
+                    <tr>
+                    <td>${item.name}</td>
+                    <td>${item.email}</td>
+                    <td>${item.phone_number}</td>
+                    <td>${item.course_interested_in}</td>
+                    <td><button class="upd-btn" onclick="openAdModal(${item.id})">View me</button></td>
+                    <td><button disabled class="${item.status}">${item.status}</button></td>
+                    </tr>
+                `
+            }
+            else {
+                adData += `
+                    <tr>
+                    <td>${item.name}</td>
+                    <td>${item.email}</td>
+                    <td>${item.phone_number}</td>
+                    <td>${item.course_interested_in}</td>
+                    <td><button class="upd-btn" onclick="openAdModal(${item.id})">View me</button></td>
+                    <td><button class="${item.status} adBtn" onclick="changeAdvisoryStatus(${item.id})">${item.status}</button></td>
+                    </tr>
+                `
+            }
             const myTable = document.querySelector(".table-id");
             myTable.innerHTML = adData;
         })
@@ -168,13 +183,81 @@ function getAdvisory() {
 }
 getAdvisory();
 
+// function to change advisory status
+function changeAdvisoryStatus(advId) {
+    const changeImg = document.querySelector(".getImg");
+    changeImg.style.display = "block";
+
+    const changeLoc = localStorage.getItem("adminLogin");
+    const loc = JSON.parse(changeLoc);
+    const locTok = loc.token;
+
+    const adv = document.querySelector(".adBtn");
+
+    const locHead = new Headers();
+    locHead.append("Authorization", `Bearer ${locTok}`);
+
+    const locForm = new FormData();
+    locForm.append("id", advId);
+
+    const locReq = {
+        method: 'POST',
+        headers: locHead,
+        body: locForm
+    };
+
+    const url = "https://pluralcode.academy/pluralcode_payments/api/admin/update_advisory_status";
+    fetch(url, locReq)
+    .then(response => response.json())
+    .then(result => {
+        console.log(result)
+        if (result.status === "success") {
+            adv.innerHTML = "complete";
+            adv.style.backgroundColor = "#4ee053";
+            adv.disabled = true;
+            changeImg.style.display = "none";
+        }
+    })
+    .catch(error => console.log('error', error));
+}
+
 // function to open update modal for course info
 let idCourse;
 function openCourseModal(courseId) {
     const getModal = document.getElementById("my-modal");
     getModal.style.display = "block";
     idCourse = courseId;
-    console.log(idCourse);
+
+    const upName = document.querySelector(".courseUpName");
+    const upFee = document.querySelector(".courseUpFee");
+    const upPart = document.querySelector(".courseUpPart");
+    const upPer = document.querySelector(".courseUpPercent");
+    const upLink = document.querySelector(".courseUpLink");
+
+    const open1 = localStorage.getItem("adminLogin");
+    const open2 = JSON.parse(open1);
+    const openTok = open2.token;
+
+    const openHead = new Headers();
+    openHead.append("Authorization", `Bearer ${openTok}`)
+
+    const openReq = {
+        method: 'POST',
+        headers: openHead
+    };
+
+    const url = `https://pluralcode.academy/pluralcode_payments/api/admin/course_details/` + `${courseId}`;
+    fetch(url, openReq)
+    .then(response => response.json())
+    .then(result => {
+        console.log(result)
+        upName.setAttribute('value', `${result.name}`);
+        upFee.setAttribute('value', `${result.course_fee}`);
+        upPart.setAttribute('value', `${result.part_payment}`);
+        upPer.setAttribute('value', `${result.percentages}`);
+        upLink.setAttribute('value', `${result.link}`);
+    })
+    .catch(error => console.log('error', error));
 }
 
 function closeModal3() {
@@ -190,8 +273,10 @@ function updateTheCourse(event) {
     const upFee = document.querySelector(".courseUpFee").value;
     const upPart = document.querySelector(".courseUpPart").value;
     const upPercent = document.querySelector(".courseUpPercent").value;
+    const upLink = document.querySelector(".courseUpLink").value;
 
-    if (upName === "" || upFee === "" || upPart === "" || upPercent === "") {
+
+    if (upName === "" || upFee === "" || upPart === "" || upPercent === "" || upLink === "") {
         Swal.fire({
             icon: 'info',
             text: 'All fields are required',
@@ -215,6 +300,7 @@ function updateTheCourse(event) {
         tokForm.append("course_fee", upFee);
         tokForm.append("course_partpayment", upPart);
         tokForm.append("percentages", result);
+        tokForm.append("link", upLink)
         tokForm.append("id", idCourse);
 
         const updateCourse = {
@@ -273,7 +359,7 @@ function deleteCourse(delId) {
         if (result.status === "success") {
             Swal.fire({
                 icon: 'success',
-                text:  `${result.message}`,
+                text:  `${result.status}`,
                 confirmButtonColor: '#25067C'
             })
         }
@@ -797,13 +883,50 @@ function getEnrolled() {
                     <td>${item.state_of_residence}</td>
                     <td>${item.level_of_education}</td>
                     <td><button class="upd-btn" onclick="viewEnrolled(${item.id})">View me</button></td>
-                    <td><button class=${item.payment_status} onclick="changeStatus(${item.id})">${item.payment_status}</button></td>
+                    <td><button class="${item.payment_status} enrol" onclick="changeStatus(${item.id})">${item.payment_status}</button></td>
                 </tr>
                `
             }
             const tableInfo = document.querySelector(".tableData");
             tableInfo.innerHTML = dataItem;
         })
+    })
+    .catch(error => console.log('error', error));
+}
+
+// function to change status
+function changeStatus(changeid) {
+    const getMg = document.querySelector(".getImg");
+    getMg.style.display = "block";
+    const change = localStorage.getItem("adminLogin");
+    const change2 = JSON.parse(change);
+    const changeTok = change2.token;
+
+    const getRoll = document.querySelector(".enrol");
+
+    const changeHead = new Headers();
+    changeHead.append("Authorization", `Bearer ${changeTok}`);
+
+    const changeForm = new FormData();
+    changeForm.append("id", changeid);
+
+    const changeReq = {
+        method: 'POST',
+        headers: changeHead,
+        body: changeForm
+    };
+
+    const url = "https://pluralcode.academy/pluralcode_payments/api/admin/update_enrolled_status";
+    fetch(url, changeReq)
+    .then(response => response.json())
+    .then(result => {
+        console.log(result)
+        if (result.status === "success") {
+            getRoll.innerHTML = "complete";
+            getRoll.style.backgroundColor = "#4ee053";
+            getRoll.disabled = true;
+            getMg.style.display = "none";
+        }
     })
     .catch(error => console.log('error', error));
 }
@@ -923,7 +1046,46 @@ function getInterest() {
     .then(result => {
         console.log(result)
         result.map((item) => {
-            dataItem += `
+            if (item.payment_status === "complete") {
+                dataItem += `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.email}</td>
+                    <td>${item.phone_number}</td>
+                    <td>${item.amount_paid}</td>
+                    <td>${item.mode_of_learning}</td>
+                    <td>${item.course_of_interest}</td>
+                    <td>${item.mode_of_payment}</td>
+                    <td>${item.date}</td>
+                    <td>${item.time}</td>
+                    <td>${item.address}</td>
+                    <td>${item.state_of_residence}</td>
+                    <td>${item.level_of_education}</td>
+                    <td><button disabled class=${item.payment_status}>${item.payment_status}</button></td>
+                </tr>
+            `
+            }
+            else if (item.payment_status === "un-paid") {
+                dataItem += `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.email}</td>
+                    <td>${item.phone_number}</td>
+                    <td>${item.amount_paid}</td>
+                    <td>${item.mode_of_learning}</td>
+                    <td>${item.course_of_interest}</td>
+                    <td>${item.mode_of_payment}</td>
+                    <td>${item.date}</td>
+                    <td>${item.time}</td>
+                    <td>${item.address}</td>
+                    <td>${item.state_of_residence}</td>
+                    <td>${item.level_of_education}</td>
+                    <td><button disabled class=${item.payment_status}>${item.payment_status}</button></td>
+                </tr>
+            `
+            }
+            else {
+                dataItem += `
                  <tr>
                     <td>${item.name}</td>
                     <td>${item.email}</td>
@@ -937,11 +1099,51 @@ function getInterest() {
                     <td>${item.address}</td>
                     <td>${item.state_of_residence}</td>
                     <td>${item.level_of_education}</td>
+                    <td><button class="${item.payment_status} getMe" onclick="changeInter(${item.id})">${item.payment_status}</button></td>
                  </tr>
             `
+            }
             const tableInfo = document.querySelector(".tableInterest");
             tableInfo.innerHTML = dataItem;
         })
+    })
+    .catch(error => console.log('error', error));
+}
+
+// function to change interested button status
+function changeInter(interId) {
+    const getMig = document.querySelector(".getImg");
+    getMig.style.display = "block";
+    const interAd = localStorage.getItem("adminLogin");
+    const interAdmin = JSON.parse(interAd);
+    const interTok = interAdmin.token;
+
+    const getInter = document.querySelector(".getMe");
+    // getInter.innerHTML = "updating...";
+
+    const interHead = new Headers();
+    interHead.append("Authorization", `Bearer ${interTok}`);
+
+    const interForm = new FormData();
+    interForm.append("id", interId);
+
+    const interReq = {
+        method: 'POST',
+        headers: interHead,
+        body: interForm
+    };
+
+    const url = "https://pluralcode.academy/pluralcode_payments/api/admin/update_interested_status";
+    fetch(url, interReq)
+    .then(response => response.json())
+    .then(result => {
+        console.log(result)
+        if (result.status === "success") {
+            getInter.innerHTML = "complete";
+            getInter.style.backgroundColor = "#4ee053";
+            getInter.disabled = true;
+            getMig.style.display = "none";
+        }
     })
     .catch(error => console.log('error', error));
 }
@@ -1000,7 +1202,8 @@ function searchName(event) {
                         <td>${item.address}</td>
                         <td>${item.state_of_residence}</td>
                         <td>${item.level_of_education}</td>
-                        <td>${item.payment_status}</td>
+                        <td><button class="upd-btn" onclick="viewEnrolled(${item.id})">View me</button></td>
+                        <td><button class="${item.payment_status}">${item.payment_status}</button></td>
                     </tr>
                     `
                     tableInfo.innerHTML = nameData;
@@ -1057,6 +1260,7 @@ function searchName2(event) {
                         <td>${item.name}</td>
                         <td>${item.email}</td>
                         <td>${item.phone_number}</td>
+                        <td>${item.amount_to_pay}</td>
                         <td>${item.mode_of_learning}</td>
                         <td>${item.course_of_interest}</td>
                         <td>${item.mode_of_payment}</td>
@@ -1065,7 +1269,7 @@ function searchName2(event) {
                         <td>${item.address}</td>
                         <td>${item.state_of_residence}</td>
                         <td>${item.level_of_education}</td>
-                        <td>${item.payment_status}</td>
+                        <td><button class="${item.payment_status}">${item.payment_status}</button></td>
                     </tr>
                     `
                     tableInfo.innerHTML = nameData;
@@ -1123,7 +1327,8 @@ function getTypeCourse(event) {
                     <td>${item.address}</td>
                     <td>${item.state_of_residence}</td>
                     <td>${item.level_of_education}</td>
-                    <td>${item.payment_status}</td>
+                    <td><button class="upd-btn" onclick="viewEnrolled(${item.id})">View me</button></td>
+                    <td><button class="${item.payment_status}">${item.payment_status}</button></td>
                 </tr>
                 `
                 tableInfo.innerHTML = courseData;
@@ -1150,7 +1355,7 @@ function getTypeCourse2(event) {
 
     let courseData = [];
 
-    const url = `https://pluralcode.academy/pluralcode_payments/api/admin/enrolled_students?course=` + `${courseName}`;
+    const url = `https://pluralcode.academy/pluralcode_payments/api/admin/interested_students?course=` + `${courseName}`;
 
     fetch(url, dataReq)
     .then(response => response.json())
@@ -1169,6 +1374,7 @@ function getTypeCourse2(event) {
                     <td>${item.name}</td>
                     <td>${item.email}</td>
                     <td>${item.phone_number}</td>
+                    <td>${item.amount_paid}</td>
                     <td>${item.mode_of_learning}</td>
                     <td>${item.course_of_interest}</td>
                     <td>${item.mode_of_payment}</td>
@@ -1177,7 +1383,7 @@ function getTypeCourse2(event) {
                     <td>${item.address}</td>
                     <td>${item.state_of_residence}</td>
                     <td>${item.level_of_education}</td>
-                    <td>${item.payment_status}</td>
+                    <td><button class="${item.payment_status}">${item.payment_status}</button></td>
                 </tr>
                 `
                 tableInfo.innerHTML = courseData;
@@ -1232,7 +1438,8 @@ function searchDate(event) {
                     <td>${item.address}</td>
                     <td>${item.state_of_residence}</td>
                     <td>${item.level_of_education}</td>
-                    <td>${item.payment_status}</td>
+                    <td><button class="upd-btn" onclick="viewEnrolled(${item.id})">View me</button></td>
+                    <td><button class="${item.payment_status}">${item.payment_status}</button></td>
                 </tr>
                 `
                 tableInfo.innerHTML = dateData;
@@ -1261,7 +1468,7 @@ function searchDate2(event) {
 
     let dateData = [];
 
-    const url = `https://pluralcode.academy/pluralcode_payments/api/admin/enrolled_students?date_search=` + `${myInput}`;
+    const url = `https://pluralcode.academy/pluralcode_payments/api/admin/interested_students?date_search=` + `${myInput}`;
 
     fetch(url, dateReq)
     .then(response => response.json())
@@ -1280,6 +1487,7 @@ function searchDate2(event) {
                     <td>${item.name}</td>
                     <td>${item.email}</td>
                     <td>${item.phone_number}</td>
+                    <td>${item.amount_paid}</td>
                     <td>${item.mode_of_learning}</td>
                     <td>${item.course_of_interest}</td>
                     <td>${item.mode_of_payment}</td>
@@ -1288,7 +1496,7 @@ function searchDate2(event) {
                     <td>${item.address}</td>
                     <td>${item.state_of_residence}</td>
                     <td>${item.level_of_education}</td>
-                    <td>${item.payment_status}</td>
+                    <td><button class="${item.payment_status}">${item.payment_status}</button></td>
                 </tr>
                 `
                 tableInfo.innerHTML = dateData;
@@ -1375,8 +1583,9 @@ function createCourse(event) {
     const cFee = document.querySelector(".courseFee").value;
     const cPart = document.querySelector(".coursePart").value;
     const cPercent = document.querySelector(".coursePercent").value;
+    const cLink = document.querySelector(".courseLink").value;
 
-    if (cName === "" || cFee === "" || cPart === "" || cPercent === "") {
+    if (cName === "" || cFee === "" || cPart === "" || cPercent === "" || cLink === "") {
         Swal.fire({
             icon: 'info',
             text: 'All fields are required!',
@@ -1402,6 +1611,7 @@ function createCourse(event) {
         courseForm.append("course_fee", cFee);
         courseForm.append("course_partpayment", cPart);
         courseForm.append("percentages", result);
+        courseForm.append("link", cLink);
 
         const courseReq = {
             method: 'POST',

@@ -1282,7 +1282,7 @@ table td {
 }
 
 
-.complete, .pending {
+.complete, .pending, .un-paid{
     color: #fff;
     width: 100%;
     outline: none;
@@ -1298,4 +1298,12 @@ table td {
 
 .pending {
     background-color: #d60026;
+}
+
+.un-paid {
+    background-color: #ff903d;
+}
+
+.getImg {
+    display: none;
 }
